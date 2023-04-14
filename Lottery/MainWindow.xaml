@@ -8,24 +8,74 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="693">
     <Window.Background>
-        <ImageBrush ImageSource="/в_IT_substrate_3.png" Stretch="Uniform"/>
+        <ImageBrush ImageSource="/в_IT_substrate_3.png" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0" Background="White">
+        <Grid Grid.Column="0"
+                    Grid.Row="1"
+                    Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
             <Image gif:ImageBehavior.RepeatBehavior="Forever"
                    gif:ImageBehavior.AnimatedSource="/Logo.gif"
                    VerticalAlignment="Center"/>
+            <StackPanel x:Name="stackCurrentPerson"
+                        Orientation="Horizontal"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Visibility="Visible"
+                        DataContext="{Binding Person, UpdateSourceTrigger=PropertyChanged}">
+                
+                <TextBlock x:Name="txtFirstName"
+                       Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       FontSize="40"
+                       Margin="0 0 10 0"/>
+                <TextBlock x:Name="txtLastName"
+                       Grid.Column="1"
+                       Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       FontSize="40"/>
+            </StackPanel>
             
-        </StackPanel>
+            
+            <UniformGrid x:Name="gridPersonRandom"
+                         Grid.Column="1"
+                         Rows="4"
+                         Columns="2"
+                         Visibility="Hidden">
+                
+            </UniformGrid>
+            
 
+        </Grid>
+        <Button x:Name="btnStart"
+                Grid.Row="2"
+                Width="200"
+                Height="50"
+                Background="Pink"
+                Foreground="Indigo"
+                FontSize="30"
+                FontWeight="Bold"
+                Content="СТАРТ"
+                IsDefault="True"
+                Click="btnStart_Click">
+            
+        </Button>
 
     </Grid>
 </Window>
